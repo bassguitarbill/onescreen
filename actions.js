@@ -9,7 +9,7 @@ function scare(room, choice) {
 	}else{
 		choice = choice || 0;
 		var farthestNode = farthestNodes[choice];
-		rooms[farthestNode.x][farthestNode.y].count = room.count;
+		rooms[farthestNode.x][farthestNode.y].count = rooms[farthestNode.x][farthestNode.y].count + room.count;
 		room.count = 0;
 	}
 }
