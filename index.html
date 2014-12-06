@@ -14,12 +14,11 @@
 <body>
 	<h3>Hi! My game will eventually go here! To win, there must be no more than one mouse in each room</h3>
 	<canvas id="screen" height="900px" width="900px"></canvas>
-	<button onclick="start()">Start Puzzle</button>
-	<button onclick="snare(rooms[0][0])">Snare Left</button>
-	<button onclick="snare(rooms[1][0])">Snare Right</button>
-	<button onclick="scare(rooms[0][0])">Scare Left</button>
-	<button onclick="scare(rooms[1][0])">Scare Right</button>
-	<button onclick="split(rooms[0][0])">Split Left</button>
-	<button onclick="split(rooms[1][0])">Split Right</button>
+	<form>
+		<input type="radio" name="action" value="snare" checked>Snare</input>
+		<input type="radio" name="action" value="scare">Scare</input>
+		<input type="radio" name="action" value="split">Split</input>
+	</form>
+
 </body>
 </html>

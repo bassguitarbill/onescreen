@@ -35,14 +35,38 @@ function click(e) {
 	if(choices.length > 1) {
 		var clickedInRoomX = (x % (Room.prototype.WIDTH + Corridor.prototype.horiz.LENGTH) < Room.prototype.WIDTH) ? Math.floor(x / (Room.prototype.WIDTH + Corridor.prototype.horiz.LENGTH)) : -1;
 		var clickedInRoomY = (y % (Room.prototype.HEIGHT + Corridor.prototype.vert.LENGTH) < Room.prototype.HEIGHT) ? Math.floor(y / (Room.prototype.HEIGHT + Corridor.prototype.vert.LENGTH)) : -1;
-		console.log(clickedInRoomX,clickedInRoomY);
 		var destination = choices.filter(function(node){return (clickedInRoomX == node.x) && (clickedInRoomY == node.y)});
 		if(destination.length > 0)
 			scare(rooms[scareFromRoom.x][scareFromRoom.y],choices.indexOf(destination[0]));
 
 		clearChoices();
 	} else {
-		// normal functionality
+		var actions = document.getElementsByName("action");
+		var action;
+		for(var a=0; a<actions.length; a++){
+			if(actions[a].checked)
+				action = actions[a].value;
+		}
+
+		var clickedInRoomX = (x % (Room.prototype.WIDTH + Corridor.prototype.horiz.LENGTH) < Room.prototype.WIDTH) ? Math.floor(x / (Room.prototype.WIDTH + Corridor.prototype.horiz.LENGTH)) : -1;
+		var clickedInRoomY = (y % (Room.prototype.HEIGHT + Corridor.prototype.vert.LENGTH) < Room.prototype.HEIGHT) ? Math.floor(y / (Room.prototype.HEIGHT + Corridor.prototype.vert.LENGTH)) : -1;
+
+		if(clickedInRoomX > -1 && clickedInRoomY > -1){
+			switch(action) {
+				case "snare":
+					snare(rooms[clickedInRoomX][clickedInRoomY]);
+					break;
+				case "scare":
+					scare(rooms[clickedInRoomX][clickedInRoomY]);
+					break;
+				case "split":
+					split(rooms[clickedInRoomX][clickedInRoomY]);
+					break;
+			}
+		} else {
+			console.log("Bzz! Bad click!");
+		}
+
 	}
 }
 

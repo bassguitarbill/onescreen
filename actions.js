@@ -1,5 +1,8 @@
 function scare(room, choice) {
-	
+
+	if(!room)
+		return;
+
 	var accessibleNodes = arrayToList(dijkstra(room)).filter(function(node){return node.dist < Number.MAX_VALUE});
 	var maxDist = accessibleNodes.sort(function(a,b){return b.dist - a.dist})[0].dist;
 
@@ -17,6 +20,9 @@ function scare(room, choice) {
 
 function snare(room) {
 
+	if(!room)
+		return;
+
 	// SUPER NAIVE, I HATE THIS AS MUCH AS YOU DO
 	
 	var roomsThatCanReach = arrayToList(rooms).filter(function(node){return isAccessible(node,room)});
@@ -30,6 +36,9 @@ function snare(room) {
 }
 
 function split(room) {
+
+	if(!room)
+		return;
  
 	var accessibleNodes = arrayToList(dijkstra(room)).filter(function(node){return node.dist < Number.MAX_VALUE});
 
