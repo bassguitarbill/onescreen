@@ -1,9 +1,15 @@
 function scare(room, choice) {
 
+	console.log("scare:",arguments);
+
 	if(!room)
 		return;
 
 	var accessibleNodes = arrayToList(dijkstra(room)).filter(function(node){return node.dist < Number.MAX_VALUE});
+
+	if(accessibleNodes.length == 1)
+		return;
+
 	var maxDist = accessibleNodes.sort(function(a,b){return b.dist - a.dist})[0].dist;
 
 	var farthestNodes = accessibleNodes.filter(function(node){return node.dist == maxDist});
@@ -19,6 +25,8 @@ function scare(room, choice) {
 }
 
 function snare(room) {
+
+	console.log("snare:",arguments);
 
 	if(!room)
 		return;
@@ -36,6 +44,8 @@ function snare(room) {
 }
 
 function split(room) {
+
+	console.log("split:",arguments);
 
 	if(!room)
 		return;

@@ -27,9 +27,12 @@ scareFromRoom = null;
 
 function click(e) {
 
-	var x = e.x - canvas.offsetLeft;
-	var y = e.y - canvas.offsetTop;
+	//var x = e.x - canvas.offsetLeft;
+	//var y = e.y - canvas.offsetTop;
 	
+	var x = e.offsetX;
+	var y = e.offsetY;
+
 	console.log(e);
 
 	if(choices.length > 1) {

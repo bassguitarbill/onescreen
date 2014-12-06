@@ -15,6 +15,9 @@ function Puzzle(game, createString) {
 			case "C":
 				new Corridor(game,Number(command[1]),Number(command[2]),command[3]);
 				break;
+			case "F":
+				new Funnel(game,Number(command[1]),Number(command[2]),command[3]);
+				break;
 			default:
 				console.log("Unrecognized command: ", entities[i]);
 				break;
