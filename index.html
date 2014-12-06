@@ -4,6 +4,7 @@
 	<script src="Corridor.js"></script>
 	<script src="Funnel.js"></script>
 	<script src="Room.js"></script>
+	<script src="Puzzle.js"></script>
 
 	<script src="actions.js"></script>
 	<script src="logic.js"></script>
@@ -11,7 +12,14 @@
 </head>
 
 <body>
-	Hi! My game will eventually go here!
-	<canvas id="screen" height="900px" width="900px"/>
+	<h3>Hi! My game will eventually go here! To win, there must be no more than one mouse in each room</h3>
+	<canvas id="screen" height="900px" width="900px"></canvas>
+	<button onclick="start()">Start Puzzle</button>
+	<button onclick="snare(rooms[0][0])">Snare Left</button>
+	<button onclick="snare(rooms[1][0])">Snare Right</button>
+	<button onclick="scare(rooms[0][0])">Scare Left</button>
+	<button onclick="scare(rooms[1][0])">Scare Right</button>
+	<button onclick="split(rooms[0][0])">Split Left</button>
+	<button onclick="split(rooms[1][0])">Split Right</button>
 </body>
 </html>

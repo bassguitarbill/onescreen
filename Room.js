@@ -1,10 +1,10 @@
-function Room(game, x, y) {
+function Room(game, x, y, count) {
 
 	this.game = game;
 	this.x = x;
 	this.y = y;
 
-	this.count = 0;
+	this.count = count || 0;
 
 	this.game.rooms[x][y] = this;
 

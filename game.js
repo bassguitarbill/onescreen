@@ -20,6 +20,10 @@ window.onload = function() {
 
 }
 
+function start() {
+	new Puzzle(game, "R,0,0,2 R,1,0,0 C,0,0,horiz");
+}
+
 function getTime() {
 	return new Date() - startTime;
 }
