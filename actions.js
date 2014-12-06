@@ -28,3 +28,17 @@ function snare(room) {
 
 	room.count = count;
 }
+
+function split(room) {
+ 
+	var accessibleNodes = arrayToList(dijkstra(room)).filter(function(node){return node.dist < Number.MAX_VALUE});
+
+	var count = room.count;
+	room.count = count % accessibleNodes.length;
+	for(var i=0; i<accessibleNodes.length; i++) {
+		var node = accessibleNodes[i];
+		var toRoom = rooms[node.x][node.y];
+		toRoom.count = toRoom.count + Math.floor(count / accessibleNodes.length);
+	}
+
+}
