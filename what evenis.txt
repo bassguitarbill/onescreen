@@ -42,3 +42,51 @@ CORRIDOR TYPES:
 	Valve / Funnel: mice can only travel in one direction through. may or may not be closeable
 	
 This is really, really simple.
+
+Now! Let's talk data structures.
+
+A Room has a North, South, East, and West slot. These are each Corridors (or null).
+A Corridor has a North and South, or East and West. These are both Rooms.
+If you can enter a corridor it stands to reason you can exit it. Thus, corridors are either enterable or nonenterable.
+R,1,0 R,0,0 H,W,1,0
+Room at 1,0
+Room at 0,0
+Hall, pointing West from 1,0
+
+[]=[]
+
+R,0,0 R,1,0 F,W,1,0
+Rooms as before
+Funnel, pointing West from 1,0
+[]-<[]
+Room 1,0 has only a West corridor. It is inaccessible from all directions.
+Room 0,0 has no corridors. It is accessible from East.
+
+So a room has inputs and outputs. Maybe inputs and outputs are Rooms?
+
+Okay, so a [][] of rooms. Rooms contain corridors, they're not present in the [][].
+Halls and doors are added to both rooms.
+Funnels are added only to the entry room.
+
+So for a SCARE, we do a Dijkstra. Find the distance to all other rooms, find the max of those distances, mice go there.
+For a SNARE, we do a reverse accessibility test. Run accessible? from all squares to source, true values lose their mice.
+For a SPLIT, do a regular accessible? from source to all squares. Get total, divide, conquer.
+
+Clearly the SCARE will be the most involved.
+
+Let's work on accessible? first.
+function accessible? (origin, destination) {
+	for(directions)
+		if(canTravel(origin, direction) || accessible?(origin + direction))
+			return true;
+}
+
+function canTravel(origin, direction) {
+	return (!roomAt(origin)[direction])
+} 	
+
+
+
+
+
+

@@ -1,7 +1,10 @@
-function Room(x, y) {
+function Room(game, x, y) {
 
+	this.game = game;
 	this.x = x;
 	this.y = y;
+
+	this.game.rooms[x][y] = this;
 
 }
 
@@ -19,7 +22,19 @@ Room.prototype.draw = function(ctx) {
 	ctx.fillStyle = Room.prototype.fillStyle;
 	ctx.fillRect(xpos,ypos,Room.prototype.WIDTH,Room.prototype.HEIGHT);
 
-	console.log(xpos, ypos);
+	if(this.e)
+		this.e.draw(ctx);
+
+	if(this.n)
+		this.n.draw(ctx);
+
+	if(this.w && !this.w instanceof Corridor)
+		this.w.draw(ctx);
+
+	if(this.s && !this.s instanceof Corridor)
+		this.s.draw(ctx);
+
+	//console.log(xpos, ypos);
 }
 
 
