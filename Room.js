@@ -4,6 +4,8 @@ function Room(game, x, y) {
 	this.x = x;
 	this.y = y;
 
+	this.count = 0;
+
 	this.game.rooms[x][y] = this;
 
 }
@@ -22,17 +24,21 @@ Room.prototype.draw = function(ctx) {
 	ctx.fillStyle = Room.prototype.fillStyle;
 	ctx.fillRect(xpos,ypos,Room.prototype.WIDTH,Room.prototype.HEIGHT);
 
-	if(this.e)
+	if(canTravel(this,"e"))
 		this.e.draw(ctx);
 
-	if(this.n)
+	if(canTravel(this,"n"))
 		this.n.draw(ctx);
 
-	if(this.w && !this.w instanceof Corridor)
+	if(canTravel(this,"w") && !(this.w instanceof Corridor))
 		this.w.draw(ctx);
 
-	if(this.s && !this.s instanceof Corridor)
+	if(canTravel(this,"s") && !(this.s instanceof Corridor))
 		this.s.draw(ctx);
+
+	ctx.fillStyle = "rgb(0,0,0)";
+	ctx.fillText(this.count,xpos + MARGIN,ypos + Room.prototype.HEIGHT - MARGIN);
+	ctx.fillStyle = Room.prototype.fillStyle;
 
 	//console.log(xpos, ypos);
 }

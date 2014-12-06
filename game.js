@@ -9,9 +9,11 @@ window.onload = function() {
 
 	game = {};
 	game.rooms = initializeRooms();
-	randomizeRooms();
+	//randomizeRooms();
 
-	draw(ctx);
+	setInterval(function() {
+		draw(ctx);
+	}, 1000/60);
 
 
 }
@@ -51,6 +53,9 @@ function randomizeRooms() {
 }
 
 function draw(ctx) {
+
+	ctx.fillStyle = "rgb(60,60,60)";
+	ctx.fillRect(0,0,canvas.width,canvas.height);
 
 	for(var x=0; x<ROOMS_X; x++){
 		for(var y=0; y<ROOMS_Y; y++){
