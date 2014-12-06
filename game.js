@@ -9,6 +9,9 @@ window.onload = function() {
 
 	game = {};
 	game.rooms = initializeRooms();
+	randomizeRooms();
+
+	draw(ctx);
 
 
 }
