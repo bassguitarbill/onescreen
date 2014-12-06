@@ -7,6 +7,9 @@ window.onload = function() {
 	ROOMS_X = 10;
 	ROOMS_Y = 10;
 
+	startTime = new Date();
+
+
 	game = {};
 	game.rooms = initializeRooms();
 	//randomizeRooms();
@@ -15,9 +18,12 @@ window.onload = function() {
 		draw(ctx);
 	}, 1000/60);
 
-
 }
-	
+
+function getTime() {
+	return new Date() - startTime;
+}
+
 function initializeRooms() {
 	rooms = new Array(ROOMS_X);
 	for(var x=0; x<ROOMS_X; x++){

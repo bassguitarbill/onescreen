@@ -8,7 +8,11 @@ function Room(game, x, y) {
 
 	this.game.rooms[x][y] = this;
 
+	this.banned = false;
 }
+
+Room.prototype.bannedImage = new Image();
+Room.prototype.bannedImage.src = 'images/banned.png';
 
 Room.prototype.HEIGHT = 50;
 Room.prototype.WIDTH = 50;
@@ -35,6 +39,13 @@ Room.prototype.draw = function(ctx) {
 
 	if(canTravel(this,"s") && !(this.s instanceof Corridor))
 		this.s.draw(ctx);
+
+	if(this.banned){
+		ctx.globalAlpha = Math.abs((getTime() % 1000) - 500) / 500;
+		ctx.drawImage(this.bannedImage, xpos, ypos);
+		ctx.globalAlpha = 1.0;
+
+	}
 
 	ctx.fillStyle = "rgb(0,0,0)";
 	ctx.fillText(this.count,xpos + MARGIN,ypos + Room.prototype.HEIGHT - MARGIN);
