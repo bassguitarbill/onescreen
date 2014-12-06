@@ -6,8 +6,11 @@ function Puzzle(game, createString) {
 		var command = entities[i].split(",");
 
 		switch (command[0]) {
+			case "B":
+				new Room(game,Number(command[1]),Number(command[2]),Number(command[3]),true);
+				break;
 			case "R":
-				new Room(game,Number(command[1]),Number(command[2]),Number(command[3]));
+				new Room(game,Number(command[1]),Number(command[2]),Number(command[3]),false);
 				break;
 			case "C":
 				new Corridor(game,Number(command[1]),Number(command[2]),command[3]);

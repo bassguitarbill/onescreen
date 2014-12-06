@@ -6,6 +6,7 @@ function scare(room, choice) {
 	var farthestNodes = accessibleNodes.filter(function(node){return node.dist == maxDist});
 	if(farthestNodes.length > 1 && (typeof choice === "undefined" || choice > (farthestNodes.length - 1))){
 		console.log("Multiple farthest nodes. Length = ",farthestNodes.length);
+		setChoices(farthestNodes,room);
 	}else{
 		choice = choice || 0;
 		var farthestNode = farthestNodes[choice];
@@ -19,7 +20,6 @@ function snare(room) {
 	// SUPER NAIVE, I HATE THIS AS MUCH AS YOU DO
 	
 	var roomsThatCanReach = arrayToList(rooms).filter(function(node){return isAccessible(node,room)});
-	console.log(roomsThatCanReach);
 	var count = 0;
 	for(var i=0; i<roomsThatCanReach.length; i++) {
 		count = count + roomsThatCanReach[i].count;
@@ -40,5 +40,18 @@ function split(room) {
 		var toRoom = rooms[node.x][node.y];
 		toRoom.count = toRoom.count + Math.floor(count / accessibleNodes.length);
 	}
+
+}
+
+function setChoices(nodes, room) {
+
+	choices = nodes;
+	scareFromRoom = room;
+
+}
+
+function clearChoices() {
+
+	choices = [];
 
 }

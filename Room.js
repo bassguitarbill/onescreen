@@ -1,4 +1,4 @@
-function Room(game, x, y, count) {
+function Room(game, x, y, count, banned) {
 
 	this.game = game;
 	this.x = x;
@@ -8,7 +8,7 @@ function Room(game, x, y, count) {
 
 	this.game.rooms[x][y] = this;
 
-	this.banned = false;
+	this.banned = banned || false;
 }
 
 Room.prototype.bannedImage = new Image();

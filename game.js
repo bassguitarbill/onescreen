@@ -2,13 +2,14 @@ window.onload = function() {
 	canvas = document.getElementById("screen");
 	ctx = canvas.getContext("2d");
 
-	MARGIN = 10;
+	MARGIN = 0;
 
 	ROOMS_X = 10;
 	ROOMS_Y = 10;
 
 	startTime = new Date();
 
+	canvas.addEventListener('click',click,false);
 
 	game = {};
 	game.rooms = initializeRooms();
@@ -18,6 +19,31 @@ window.onload = function() {
 		draw(ctx);
 	}, 1000/60);
 
+
+}
+
+choices = [];
+scareFromRoom = null;
+
+function click(e) {
+
+	var x = e.x - canvas.offsetLeft;
+	var y = e.y - canvas.offsetTop;
+	
+	console.log(e);
+
+	if(choices.length > 1) {
+		var clickedInRoomX = (x % (Room.prototype.WIDTH + Corridor.prototype.horiz.LENGTH) < Room.prototype.WIDTH) ? Math.floor(x / (Room.prototype.WIDTH + Corridor.prototype.horiz.LENGTH)) : -1;
+		var clickedInRoomY = (y % (Room.prototype.HEIGHT + Corridor.prototype.vert.LENGTH) < Room.prototype.HEIGHT) ? Math.floor(y / (Room.prototype.HEIGHT + Corridor.prototype.vert.LENGTH)) : -1;
+		console.log(clickedInRoomX,clickedInRoomY);
+		var destination = choices.filter(function(node){return (clickedInRoomX == node.x) && (clickedInRoomY == node.y)});
+		if(destination.length > 0)
+			scare(rooms[scareFromRoom.x][scareFromRoom.y],choices.indexOf(destination[0]));
+
+		clearChoices();
+	} else {
+		// normal functionality
+	}
 }
 
 function start() {
@@ -74,4 +100,21 @@ function draw(ctx) {
 			}
 		}
 	}
+	
+	if(choices.length > 0){
+		ctx.globalAlpha = 0.8;
+		ctx.fillStyle = "rgb(255,255,0)";
+		for(var i=0; i<choices.length; i++){
+						
+			var xpos = MARGIN + (choices[i].x * (Room.prototype.WIDTH + Corridor.prototype.horiz.LENGTH));
+			var ypos = MARGIN + (choices[i].y * (Room.prototype.HEIGHT + Corridor.prototype.vert.LENGTH));
+	
+			ctx.fillRect(xpos,ypos,Room.prototype.WIDTH,Room.prototype.HEIGHT);
+
+		}
+	}
 }
+
+
+
+
