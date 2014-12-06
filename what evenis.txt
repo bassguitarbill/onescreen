@@ -18,11 +18,27 @@ Rooms are connected by corridors. Some corridors have doors.
 It is possible to shut and open doors.
 
 You can also control mice.
-You can SCARE them, which causes all mice in the room to retreat to the farthest accessible room.
+You can SCARE them, which causes all mice in the room to retreat to the farthest accessible room*.
+	* If there are multiple "furthest rooms" which one do the mice go to?
+	* Randomness is out. This is a puzzle game, it should be deterministic
+	* Splitting them doesn't work really, if there's a remainder, what happens?
+	* Player chooses. I don't like it but I guess it works.
 You can SNARE them, which causes all mice which can access the current room to arrive.
-You can SPLIT them, which causes mige to evenly* split into accessible rooms.
+You can SPLIT them, which causes mice to evenly* split into accessible rooms.
 	* n mice, R rooms, (n/R go in each room, n%R stay in the original room)
 	* 7 mice, 2 rooms, 3 go to each room, one stays in the original room, so 3 and 4
 	* okay
 
 Will this be fun? Who can say.
+The jury's in: yes! This has the potential to be quite fun!
+
+ROOM TYPES:
+	Normal room
+	Banned room: mice can pass through this room, but the puzzle cannot be solved with mice in a banned room
+
+CORRIDOR TYPES:
+	Hall: mice can travel unimpeded
+	Door: player can open or close door
+	Valve / Funnel: mice can only travel in one direction through. may or may not be closeable
+	
+This is really, really simple.
