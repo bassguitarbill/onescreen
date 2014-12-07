@@ -27,13 +27,8 @@ scareFromRoom = null;
 
 function click(e) {
 
-	//var x = e.x - canvas.offsetLeft;
-	//var y = e.y - canvas.offsetTop;
-	
 	var x = e.offsetX;
 	var y = e.offsetY;
-
-	console.log(e);
 
 	if(choices.length > 1) {
 		var clickedInRoomX = (x % (Room.prototype.WIDTH + Corridor.prototype.horiz.LENGTH) < Room.prototype.WIDTH) ? Math.floor(x / (Room.prototype.WIDTH + Corridor.prototype.horiz.LENGTH)) : -1;
@@ -51,21 +46,35 @@ function click(e) {
 				action = actions[a].value;
 		}
 
-		var clickedInRoomX = (x % (Room.prototype.WIDTH + Corridor.prototype.horiz.LENGTH) < Room.prototype.WIDTH) ? Math.floor(x / (Room.prototype.WIDTH + Corridor.prototype.horiz.LENGTH)) : -1;
-		var clickedInRoomY = (y % (Room.prototype.HEIGHT + Corridor.prototype.vert.LENGTH) < Room.prototype.HEIGHT) ? Math.floor(y / (Room.prototype.HEIGHT + Corridor.prototype.vert.LENGTH)) : -1;
+		var sectorX = Math.floor(x / (Room.prototype.WIDTH + Corridor.prototype.horiz.LENGTH));
+		var sectorY = Math.floor(y / (Room.prototype.HEIGHT + Corridor.prototype.vert.LENGTH));
 
-		if(clickedInRoomX > -1 && clickedInRoomY > -1){
+		var clickedInRoomX = (x % (Room.prototype.WIDTH + Corridor.prototype.horiz.LENGTH) < Room.prototype.WIDTH);
+		var clickedInRoomY = (y % (Room.prototype.HEIGHT + Corridor.prototype.vert.LENGTH) < Room.prototype.HEIGHT);
+
+		if(clickedInRoomX && clickedInRoomY){
 			switch(action) {
 				case "snare":
-					snare(rooms[clickedInRoomX][clickedInRoomY]);
+					snare(rooms[sectorX][sectorY]);
 					break;
 				case "scare":
-					scare(rooms[clickedInRoomX][clickedInRoomY]);
+					scare(rooms[sectorX][sectorY]);
 					break;
 				case "split":
-					split(rooms[clickedInRoomX][clickedInRoomY]);
+					split(rooms[sectorX][sectorY]);
 					break;
 			}
+		} else if (clickedInRoomX){
+			//below the room
+			var corr = rooms[sectorX][sectorY].s;
+			if(corr instanceof Door)
+				corr.open = !corr.open;
+
+		} else if (clickedInRoomY){
+			var corr = rooms[sectorX][sectorY].e;
+			if(corr instanceof Door)
+				corr.open = !corr.open;
+			
 		} else {
 			console.log("Bzz! Bad click!");
 		}

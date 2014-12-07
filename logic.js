@@ -1,5 +1,5 @@
 function canTravel(room, direction) {
-	return !!room[direction];
+	return !!room[direction] && (!(room[direction] instanceof Door) || room[direction].open);
 }
 
 Array.prototype.includes = function(element) {

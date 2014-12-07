@@ -18,6 +18,9 @@ function Puzzle(game, createString) {
 			case "F":
 				new Funnel(game,Number(command[1]),Number(command[2]),command[3]);
 				break;
+			case "D":
+				new Door(game,Number(command[1]),Number(command[2]),command[3]);
+				break;
 			default:
 				console.log("Unrecognized command: ", entities[i]);
 				break;

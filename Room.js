@@ -28,16 +28,16 @@ Room.prototype.draw = function(ctx) {
 	ctx.fillStyle = Room.prototype.fillStyle;
 	ctx.fillRect(xpos,ypos,Room.prototype.WIDTH,Room.prototype.HEIGHT);
 
-	if(canTravel(this,"e"))
+	if(this.e)
 		this.e.draw(ctx);
 
-	if(canTravel(this,"n"))
+	if(this.n)
 		this.n.draw(ctx);
 
-	if(canTravel(this,"w") && !(this.w instanceof Corridor))
+	if(this.w && !(this.w instanceof Corridor))
 		this.w.draw(ctx);
 
-	if(canTravel(this,"s") && !(this.s instanceof Corridor))
+	if(this.s && !(this.s instanceof Corridor))
 		this.s.draw(ctx);
 
 	if(this.banned){
