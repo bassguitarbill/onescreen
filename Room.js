@@ -48,7 +48,7 @@ Room.prototype.draw = function(ctx) {
 	}
 
 	ctx.fillStyle = "rgb(0,0,0)";
-	ctx.fillText(this.count,xpos + MARGIN,ypos + Room.prototype.HEIGHT - MARGIN);
+	ctx.fillText(this.count,xpos + 20,ypos + Room.prototype.HEIGHT - 20);
 	ctx.fillStyle = Room.prototype.fillStyle;
 
 	//console.log(xpos, ypos);
